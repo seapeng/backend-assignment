@@ -1,0 +1,20 @@
+//For build project from docker compose to Docker image
+docker compose build
+
+//For start up docker image to docker container
+docker compose up -d
+
+//For down docker container
+docker compose dow
+
+0. Middleware
+1. Auth & Validation
+2. Google Sign-In
+3. Caching with Redis
+4. Web Socket (Chat Room)
+5. Pagination
+6. Filter and Search
+7. API Docs (swagger.io) - https://github.com/SystangoTechnologies/swagger-generator-express
+8. Automate Testing API (stepci.com) https://docs.stepci.com/guides/getting-started.html -> npm install -g stepci 
+
+Contabo.com
