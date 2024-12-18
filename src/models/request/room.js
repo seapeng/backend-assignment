@@ -34,7 +34,7 @@ module.exports = {
         //     author: Joi.string().required(),
         // },
         model: "deleteRoombyId", // Name of the model
-        group: "Roon", // Swagger tag for apis.
+        group: "Room", // Swagger tag for apis.
         description: "delete a room from database"
     },
     // update by id

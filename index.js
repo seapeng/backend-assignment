@@ -10,6 +10,7 @@ const leaderRouter = require('./src/routes/leader.js');
 const buildingRouter = require('./src/routes/building.js');
 const floorRouter = require('./src/routes/floor.js');
 const roomRouter = require('./src/routes/room.js');
+const meetingRouter = require('./src/routes/meeting.js');
 const userRouter = require('./src/routes/users.js');
 const authRouter = require('./src/routes/auth.js');
 const fileRouter = require('./src/routes/file.js');
@@ -37,6 +38,7 @@ app.use('/leader', leaderRouter)
 app.use('/building', buildingRouter)
 app.use('/floor', floorRouter)
 app.use('/room', roomRouter)
+app.use('/meeting', meetingRouter)
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
 app.use('/file', fileRouter)
