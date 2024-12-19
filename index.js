@@ -13,7 +13,6 @@ const roomRouter = require('./src/routes/room.js');
 const meetingRouter = require('./src/routes/meeting.js');
 const userRouter = require('./src/routes/users.js');
 const authRouter = require('./src/routes/auth.js');
-const fileRouter = require('./src/routes/file.js');
 const setupSwagger = require('./src/swagger/index.js');
 const app = express()
 
@@ -41,7 +40,6 @@ app.use('/room', roomRouter)
 app.use('/meeting', meetingRouter)
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
-app.use('/file', fileRouter)
 
 app.use(handleError)
 
