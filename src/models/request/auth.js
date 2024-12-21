@@ -17,7 +17,7 @@ module.exports = {
   },
   1: {
     body: {
-      email: Joi.string().required().default('seapeng@camfix.net'),
+      username: Joi.string().required().default('seapeng'),
       password: Joi.string().required().default('123456'),
     },
     model: 'login', // Name of the model
