@@ -4,8 +4,8 @@ module.exports = {
     // create
     0: {
         body: {
-            sort: Joi.number().required(),
-            name: Joi.string().required(),
+            sort: Joi.number().required().default(1),
+            name: Joi.string().required().default('ផ្ការំដួល'),
         },
         model: "createBuilding", // Name of the model
         group: "Building", // Swagger tag for apis.

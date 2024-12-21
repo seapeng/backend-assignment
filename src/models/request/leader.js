@@ -4,10 +4,10 @@ module.exports = {
     // create
     0: {
         body: {
-            sort: Joi.number().required(),
-            title : Joi.string().required(),
-            fullname : Joi.string().required(),
-            position : Joi.string().required(),
+            sort: Joi.number().required().default(1),
+            title : Joi.string().required().default('លោក'),
+            fullname : Joi.string().required().default('សៀ ប៉េង'),
+            position : Joi.string().required().default('ប្រធានការិយាល័យ'),
         },
         model: "createLeader", // Name of the model
         group: "Leader", // Swagger tag for apis.

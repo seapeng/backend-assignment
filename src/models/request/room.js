@@ -4,9 +4,9 @@ module.exports = {
     // create
     0: {
         body: {
-            sort: Joi.number().required(),
-            name : Joi.string().required(),
-            floor_id : Joi.string().required(),
+            sort: Joi.number().required().default(1),
+            name : Joi.string().required().default('សែនពិដោរ'),
+            floor : Joi.string().required().default('ផ្ទាល់ដី'),
             building_id : Joi.string().required(),
         },
         model: "createRoom", // Name of the model
@@ -28,11 +28,6 @@ module.exports = {
     },
     // delete by id
     3: {
-        // body: {
-        //     title: Joi.string().required(),
-        //     price: Joi.number().required(),
-        //     author: Joi.string().required(),
-        // },
         model: "deleteRoombyId", // Name of the model
         group: "Room", // Swagger tag for apis.
         description: "delete a room from database"
@@ -42,7 +37,7 @@ module.exports = {
         body: {
             sort: Joi.number().required(),
             name : Joi.string().required(),
-            floor_id : Joi.string().required(),
+            floor : Joi.string().required(),
             building_id : Joi.string().required(),
         },
         model: "updateRoomById", // Name of the model

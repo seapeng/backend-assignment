@@ -6,13 +6,13 @@ const bodyParser = require('body-parser')
 const { logger, handleError } = require('./src/middlewares/index.js')
 
 const dbConnect = require('./src/db/db.js')
+const authRouter = require('./src/routes/auth.js');
+const userRouter = require('./src/routes/user.js');
 const leaderRouter = require('./src/routes/leader.js');
 const buildingRouter = require('./src/routes/building.js');
-const floorRouter = require('./src/routes/floor.js');
 const roomRouter = require('./src/routes/room.js');
 const meetingRouter = require('./src/routes/meeting.js');
-const userRouter = require('./src/routes/users.js');
-const authRouter = require('./src/routes/auth.js');
+
 const setupSwagger = require('./src/swagger/index.js');
 const app = express()
 
@@ -33,13 +33,13 @@ app.get('/', function (req, res) {
 app.use(bodyParser.json())
 app.use(logger)
 
+app.use('/auth', authRouter)
+app.use('/user', userRouter)
 app.use('/leader', leaderRouter)
 app.use('/building', buildingRouter)
-app.use('/floor', floorRouter)
 app.use('/room', roomRouter)
 app.use('/meeting', meetingRouter)
-app.use('/users', userRouter)
-app.use('/auth', authRouter)
+
 
 app.use(handleError)
 
