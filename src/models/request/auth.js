@@ -22,7 +22,7 @@ module.exports = {
     },
     model: 'login', // Name of the model
     group: 'Authentication', // Swagger tag for apis.
-    description: 'Login to user',
+    description: 'Login user',
   },
   2: {
     group: 'Authentication',

@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const { logger, handleError } = require('./src/middlewares/index.js')
+const { logger, handleError, verifyJWT } = require('./src/middlewares/index.js')
 
 const dbConnect = require('./src/db/db.js')
 const authRouter = require('./src/routes/auth.js');
@@ -34,11 +34,11 @@ app.use(bodyParser.json())
 app.use(logger)
 
 app.use('/auth', authRouter)
-app.use('/user', userRouter)
-app.use('/leader', leaderRouter)
-app.use('/building', buildingRouter)
-app.use('/room', roomRouter)
-app.use('/meeting', meetingRouter)
+app.use('/user', verifyJWT, userRouter)
+app.use('/leader', verifyJWT, leaderRouter)
+app.use('/building', verifyJWT, buildingRouter)
+app.use('/room', verifyJWT, roomRouter)
+app.use('/meeting', verifyJWT, meetingRouter)
 
 
 app.use(handleError)

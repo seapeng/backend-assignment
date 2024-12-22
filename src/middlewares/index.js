@@ -1,6 +1,22 @@
-// File Upload
-const multer = require('multer')
-const path = require('path')
+const asyncHandler = require('express-async-handler');
+const jwt = require('jsonwebtoken');
+
+const UserModel = require('../models/user');
+
+
+const verifyJWT = asyncHandler(async (req, res, next) => {
+    const token = req.headers.authorization;
+    
+    if (!token) {
+        return res.status(401).json({ message: 'Authentication failed' });
+    }
+
+    const extract = token.split(' ')[1];
+    const decoded = jwt.verify(extract, process.env.JWT_SECRET);
+    const user = await UserModel.findById(decoded.id);
+    req.user = user;
+    next();
+});
 
 
 function logger(req, res, next) {
@@ -17,46 +33,8 @@ function handleError(error, req, res, next) {
     return res.status(500).json(error.message)
 }
 
-const storage = multer.diskStorage({
-    destination: './uploads',
-    filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname))
-    },
-})
-
-const singleUpload = multer({
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-        checkFileType(file, cb)
-    },
-}).single('file')
-
-const multipleUploads = multer({
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-        checkFileType(file, cb)
-    },
-}).array('files')
-
-// Check file type
-function checkFileType(file, cb) {
-    // Allowed ext
-    const filetypes = /jpeg|jpg|png|gif|pdf/
-    // Check ext
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
-    // Check mime
-    const mimetype = filetypes.test(file.mimetype)
-
-    if (mimetype && extname) {
-        return cb(null, true)
-    } else {
-        cb(new Error('Error: Images Only!'), false)
-    }
-}
-
 module.exports = { 
     logger, 
     handleError,
-    singleUpload,
-    multipleUploads
+    verifyJWT,
 }
